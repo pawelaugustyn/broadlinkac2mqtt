@@ -90,6 +90,7 @@ func NewApp(logger *slog.Logger) (*App, error) {
 			Mac:             strings.ToLower(device.Mac),
 			Name:            device.Name,
 			Port:            device.Port,
+			Modes:           device.Modes,
 			TemperatureUnit: strings.ToUpper(device.TemperatureUnit),
 		}
 
@@ -146,6 +147,7 @@ func (app *App) Run(ctx context.Context, logger *slog.Logger) error {
 				Ip:              device.Ip,
 				Name:            device.Name,
 				Port:            device.Port,
+				Modes:           device.Modes,
 				TemperatureUnit: device.TemperatureUnit,
 			}})
 		if err != nil {

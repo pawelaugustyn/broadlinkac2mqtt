@@ -17,6 +17,7 @@ type DeviceConfig struct {
 	Ip              string
 	Name            string
 	Port            uint16
+	Modes           []string
 	TemperatureUnit string
 }
 

@@ -745,6 +745,11 @@ func (s *service) PublishDiscoveryTopic(ctx context.Context, input *models.Publi
 		swingModes = append(swingModes, swingMode)
 	}
 
+	modes := []string{"auto", "off", "cool", "heat", "dry", "fan_only"}
+	if len(input.Device.Modes) > 0 {
+		modes = input.Device.Modes
+	}
+
 	publishClimateDiscoveryTopicInput := modelsMqtt.PublishClimateDiscoveryTopicInput{
 		Topic: modelsMqtt.ClimateDiscoveryTopic{
 			FanModeCommandTopic:     prefix + "/fan_mode/set",
@@ -752,7 +757,7 @@ func (s *service) PublishDiscoveryTopic(ctx context.Context, input *models.Publi
 			FanModeStateTopic:       prefix + "/fan_mode/value",
 			ModeCommandTopic:        prefix + "/mode/set",
 			ModeStateTopic:          prefix + "/mode/value",
-			Modes:                   []string{"auto", "off", "cool", "heat", "dry", "fan_only"},
+			Modes:                   modes,
 			SwingModeCommandTopic:   prefix + "/swing_mode/set",
 			SwingModeStateTopic:     prefix + "/swing_mode/value",
 			SwingModes:              swingModes,

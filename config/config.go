@@ -35,10 +35,11 @@ type (
 	}
 
 	Devices struct {
-		Ip   string `env-required:"true" yaml:"ip" json:"ip"`
-		Mac  string `env-required:"true" yaml:"mac" json:"mac"`
-		Name string `env-required:"true" yaml:"name" json:"name"`
-		Port uint16 `env-required:"true" yaml:"port" json:"port"`
+		Ip    string   `env-required:"true" yaml:"ip" json:"ip"`
+		Mac   string   `env-required:"true" yaml:"mac" json:"mac"`
+		Name  string   `env-required:"true" yaml:"name" json:"name"`
+		Port  uint16   `env-required:"true" yaml:"port" json:"port"`
+		Modes []string `yaml:"modes" json:"modes"`
 		// TemperatureUnit defines the temperature unit of the device, C or F.
 		// If this is not set, the temperature unit is Celsius.
 		TemperatureUnit string `env-default:"C" yaml:"temperature_unit" json:"temperature_unit"` // BUG cleanenv env-default is not working

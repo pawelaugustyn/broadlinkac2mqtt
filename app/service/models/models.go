@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 	"time"
 )
 
@@ -15,7 +16,17 @@ type DeviceConfig struct {
 	Ip              string
 	Name            string
 	Port            uint16
+	Modes           []string
 	TemperatureUnit string
+}
+
+var allowedModes = map[string]bool{
+	"off":      true,
+	"heat":     true,
+	"cool":     true,
+	"auto":     true,
+	"dry":      true,
+	"fan_only": true,
 }
 
 func (input *DeviceConfig) Validate() error {
@@ -25,6 +36,12 @@ func (input *DeviceConfig) Validate() error {
 
 	if input.TemperatureUnit != Celsius && input.TemperatureUnit != Fahrenheit {
 		return errors.New("unknown temperature unit")
+	}
+
+	for _, mode := range input.Modes {
+		if _, allowedMode := allowedModes[mode]; !allowedMode {
+			return fmt.Errorf("unknown A/C mode %s", mode)
+		}
 	}
 
 	return nil
