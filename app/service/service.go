@@ -752,7 +752,7 @@ func (s *service) PublishDiscoveryTopic(ctx context.Context, input *models.Publi
 			FanModeStateTopic:       prefix + "/fan_mode/value",
 			ModeCommandTopic:        prefix + "/mode/set",
 			ModeStateTopic:          prefix + "/mode/value",
-			Modes:                   []string{"auto", "off", "cool", "heat", "dry", "fan_only"},
+			Modes:                   []string{"off", "cool", "heat"},
 			SwingModeCommandTopic:   prefix + "/swing_mode/set",
 			SwingModeStateTopic:     prefix + "/swing_mode/value",
 			SwingModes:              swingModes,
